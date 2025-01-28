@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Event Registration Form</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // JavaScript for conditional logic
+    function toggleFields() {
+      const role = document.getElementById("role").value;
+      const speakerFields = document.getElementById("speaker-fields");
+
+      // Show speaker fields if "Speaker" is selected
+      if (role === "speaker") {
+        speakerFields.style.display = "block";
+      } else {
+        speakerFields.style.display = "none";
+      }
+    }
+
+    function showThankYou(event) {
+      event.preventDefault();
+      const form = document.getElementById("registration-form");
+      const thankYouMessage = document.getElementById("thank-you");
+
+      form.style.display = "none";
+      thankYouMessage.style.display = "block";
+    }
+  </script>
+</head>
+<body>
+   
+        
+  <!-- Google form with conditional logic -->
+  <div class="form-container">
+   
+    <h2>Event Registration Form</h2>
+
+    <!-- Form -->
+    <form id="registration-form" onsubmit="showThankYou(event)">
+      <!-- Name -->
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+      <!-- Email -->
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <!-- Role -->
+      <label for="role">Role:</label>
+      <select id="role" name="role" onchange="toggleFields()" required>
+        <option value="" disabled selected>Select your role</option>
+        <option value="speaker">Speaker</option>
+        <option value="participant">Participant</option>
+      </select>
+
+      <!-- Speaker Fields -->
+      <div id="speaker-fields" style="display: none;">
+        <label for="presentation-title">Presentation Title:</label>
+        <input type="text" id="presentation-title" name="presentation-title" placeholder="Enter your presentation title">
+
+        <label for="topic">Topic:</label>
+        <input type="text" id="topic" name="topic" placeholder="Enter your topic">
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit">Register</button>
+    </form>
+
+    <!-- Thank You Message -->
+    <div id="thank-you" style="display: none; text-align: center;">
+      <h3>Thank you for registering in Meritto!</h3>
+      <p>We look forward to your participation in the event of Meritto.</p>
+    </div>
+  </div>
+</body>
+</html>
